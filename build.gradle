@@ -3,6 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'groovy'
+apply plugin: 'jetty'
 apply plugin: 'jettyEclipse'
 
 sourceCompatibility = 1.5
@@ -30,5 +31,23 @@ buildscript {
     }
     dependencies {
         classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+    }
+}
+
+
+task check(type: Test,overwrite: true) {
+
+    //integration tests [against jetty]
+    include '**/*Spec*'
+    doFirst {
+        jettyRun.contextPath = '/';
+        jettyRun.httpPort = 8080    // Port for test
+        jettyRun.daemon = true
+        jettyRun.execute()
+    }
+    doLast {
+        jettyStop.stopPort = 8091   // Port for stop signal
+        jettyStop.stopKey = 'stopKey'
+        jettyStop.execute()
     }
 }
