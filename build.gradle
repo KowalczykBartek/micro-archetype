@@ -51,3 +51,7 @@ task check(type: Test,overwrite: true) {
         jettyStop.execute()
     }
 }
+
+wrapper {
+    gradleVersion "2.7"
+}
