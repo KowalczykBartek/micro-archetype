@@ -1,4 +1,4 @@
-package com.micro.archetype.endpoints;
+package com.micro.archetype.web;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
