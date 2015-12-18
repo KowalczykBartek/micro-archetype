@@ -9,52 +9,56 @@ apply plugin: 'jettyEclipse'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
-    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-servlet', version: '2.15'
-    compile group: 'com.netflix.hystrix', name: 'hystrix-core', version: '1.4.21'
-    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.15'
+	compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+	compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-servlet', version: '2.15'
+	compile group: 'com.netflix.hystrix', name: 'hystrix-core', version: '1.4.21'
+	compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.15'
 
-    //tests dependencies
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
-    testCompile group: 'org.codehaus.groovy.modules.http-builder', name: 'http-builder', version: '0.7'
-    testCompile group: 'com.github.tomakehurst', name: 'wiremock', version: '1.57'
-    testCompile group: 'org.hamcrest', name: 'hamcrest-junit', version: '2.0.0.0'
+	//tests dependencies
+	testCompile group: 'junit', name: 'junit', version: '4.11'
+	testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
+	testCompile group: 'org.codehaus.groovy.modules.http-builder', name: 'http-builder', version: '0.7'
+	testCompile group: 'com.github.tomakehurst', name: 'wiremock', version: '1.57'
+	testCompile group: 'org.hamcrest', name: 'hamcrest-junit', version: '2.0.0.0'
 
 
 }
 
 
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
-    }
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath(group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+	}
 }
 
-task check(type: Test,overwrite: true) {
-    include '**/*Test*'
-    //integration tests [against jetty]
-    include '**/*Spec*'
-    doFirst {
-        jettyRun.contextPath = '/';
-        jettyRun.httpPort = 8080    // Port for test
-        jettyRun.daemon = true
-        jettyRun.execute()
-    }
-    doLast {
-        jettyStop.stopPort = 8091   // Port for stop signal
-        jettyStop.stopKey = 'stopKey'
-        jettyStop.execute()
-    }
+task localTests(type: Test) {
+	include '**/*Test*'
+}
+
+task check(type: Test, overwrite: true) {
+	include '**/*Test*'
+	//integration tests [against jetty]
+	include '**/*Spec*'
+	doFirst {
+		jettyRun.contextPath = '/';
+		jettyRun.httpPort = 8080    // Port for test
+		jettyRun.daemon = true
+		jettyRun.execute()
+	}
+	doLast {
+		jettyStop.stopPort = 8091   // Port for stop signal
+		jettyStop.stopKey = 'stopKey'
+		jettyStop.execute()
+	}
 }
 
 wrapper {
-    gradleVersion "2.7"
+	gradleVersion "2.7"
 }
