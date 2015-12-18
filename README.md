@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/KowalczykBartek/micro-archetype.svg?branch=master)](https://travis-ci.org/KowalczykBartek/micro-archetype)
+[![][license img]][license]
 
 ## What does it do?
 
@@ -19,3 +20,7 @@ dependencies in maven or mapper for javax.
 #Powered by
 <img src="https://netflix.github.com/Hystrix/images/hystrix-logo-tagline-850.png" height="70" width="200">
 <img src="https://spring.io/img/spring-by-pivotal-9066b55828deb3c10e27e609af322c40.png" height="70" width="200">
+
+
+[license]:LICENSE-2.0.txt
+[license img]:https://img.shields.io/badge/License-Apache%202-blue.svg
