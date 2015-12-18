@@ -17,5 +17,5 @@ Basic stuff needed to communicate with other services is prepared, just send JSO
 dependencies in maven or mapper for javax.
 
 #Powered by
-<img src="https://netflix.github.com/Hystrix/images/hystrix-logo-tagline-850.png" height="50" width="100">
-<img src="https://spring.io/img/spring-by-pivotal-9066b55828deb3c10e27e609af322c40.png" height="50" width="100">
+<img src="https://netflix.github.com/Hystrix/images/hystrix-logo-tagline-850.png" height="70" width="200">
+<img src="https://spring.io/img/spring-by-pivotal-9066b55828deb3c10e27e609af322c40.png" height="70" width="200">
