@@ -18,7 +18,7 @@ import com.micro.archetype.services.HelloService;
 public class HelloEndpoint
 {
 	@Autowired
-	HelloService helloService;
+	private HelloService helloService;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
