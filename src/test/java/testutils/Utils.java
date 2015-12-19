@@ -7,8 +7,8 @@ import com.micro.archetype.webclient.WebClient;
 
 public class Utils
 {
-	public static WebTarget getClientForPath(final String path)
+	public static WebTarget getClientForPath(final String path, final int port)
 	{
-		return WebClient.getClient().target("http://localhost:8089").path(path);
+		return WebClient.getClient().target(String.format("http://localhost:%s", port)).path(path);
 	}
 }
