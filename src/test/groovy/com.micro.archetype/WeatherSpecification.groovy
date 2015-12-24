@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 import static groovyx.net.http.ContentType.JSON
 
-class WeatherEndpoint extends Specification {
+class WeatherSpecification extends Specification {
 
 	def RESTClient localClient = new RESTClient(Configuration.localAddress, JSON)
 
