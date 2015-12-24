@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.micro.archetype.dto.WeatherDTO;
 import com.micro.archetype.services.WeatherService;
 import com.micro.archetype.webclient.HystrixWebWrapper;
 import com.micro.archetype.webclient.WebClient;
@@ -22,7 +23,7 @@ public class OpenWeatherMapImpl implements WeatherService
 	private String apiKey;
 
 	@Override
-	public String getWeatherForCity(final String cityName)
+	public WeatherDTO getWeatherForCity(final String cityName)
 	{
 		final Client client = WebClient.getClient();
 
@@ -37,7 +38,7 @@ public class OpenWeatherMapImpl implements WeatherService
 
 		final Response response = openweathermapCommand.execute();
 
-		return response.readEntity(String.class);
+		return response.readEntity(WeatherDTO.class);
 	}
 
 	//helpers

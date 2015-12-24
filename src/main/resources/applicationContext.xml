@@ -6,19 +6,19 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 		  http://www.springframework.org/schema/beans/spring-beans.xsd
 		  http://www.springframework.org/schema/context
-		  http://www.springframework.org/schema/context/spring-context.xsd" >
+		  http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com"/>
+	<context:component-scan base-package="com" />
 
 
-	<context:property-placeholder location="classpath:default.properties"
+	<context:property-placeholder location="classpath:default.properties,classpath:test.properties"
 								  ignore-unresolvable="true"
 								  ignore-resource-not-found="true" />
 
-	<bean id="helloService" class="com.micro.archetype.services.impl.HelloServiceImpl"/>
+	<bean id="helloService" class="com.micro.archetype.services.impl.HelloServiceImpl" />
 
-	<bean id="weatherService" class="com.micro.archetype.services.impl.OpenWeatherMapImpl"/>
+	<bean id="weatherService" class="com.micro.archetype.services.impl.OpenWeatherMapImpl" />
 
 
 </beans>

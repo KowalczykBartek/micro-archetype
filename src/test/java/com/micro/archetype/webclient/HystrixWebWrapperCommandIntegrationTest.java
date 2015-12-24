@@ -29,6 +29,7 @@ import com.micro.archetype.exceptions.ExternalDependencyException;
 public class HystrixWebWrapperCommandIntegrationTest
 {
 	private final int PORT = 8089;
+
 	@Rule
 	public WireMockRule wireMockRule = new WireMockRule(8089);
 
@@ -48,7 +49,7 @@ public class HystrixWebWrapperCommandIntegrationTest
 						.withStatus(HttpStatus.SC_OK)//
 						.withBody(objectMapper.writeValueAsString(responseBody))));
 
-		final WebTarget target = getClientForPath("assureHystrixCommand",PORT);
+		final WebTarget target = getClientForPath("assureHystrixCommand", PORT);
 		final Supplier<Response> call = () -> target.request(MediaType.APPLICATION_JSON_TYPE).get();
 
 		//when
@@ -71,7 +72,7 @@ public class HystrixWebWrapperCommandIntegrationTest
 						.withHeader("Content-Type", "application/json")//
 						.withStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR)));
 
-		final WebTarget target = getClientForPath("alwaysreturn500",PORT);
+		final WebTarget target = getClientForPath("alwaysreturn500", PORT);
 
 		final Supplier<Response> call = () -> {
 			final Response response = target.request(MediaType.APPLICATION_JSON_TYPE).get();
@@ -100,7 +101,7 @@ public class HystrixWebWrapperCommandIntegrationTest
 
 	private void callEndpointAtLeast21Times(final Supplier<Response> call)
 	{
-		IntStream.range(0,CIRCUIT_BREAKER_THRESHOLD)//
+		IntStream.range(0, CIRCUIT_BREAKER_THRESHOLD)//
 				.forEach(i -> new HystrixWebWrapper<>("sample-call", call).execute());
 	}
 }

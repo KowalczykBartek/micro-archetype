@@ -1,6 +1,8 @@
 package com.micro.archetype.services;
 
+import com.micro.archetype.dto.WeatherDTO;
+
 public interface WeatherService
 {
-	String getWeatherForCity(final String cityName);
+	WeatherDTO getWeatherForCity(final String cityName);
 }
